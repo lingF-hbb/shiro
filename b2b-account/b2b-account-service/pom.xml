@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>b2b-account</artifactId>
+        <groupId>org.HBsound</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>b2b-account-service</artifactId>
+
+    <properties>
+<!--       设置资源文件内容动态替换,因为资源文件一般不写死，资源文件需要的配置信息在这里配置,在build标签中配置一下开启动态配置-->
+<!--        <jdbc.url>jdbc:mysql://localhost:3306/javacode2018?characterEncoding=UTF-8</jdbc.url>-->
+<!--        <jdbc.username>roo</jdbc.username>-->
+<!--        <jdbc.password>roo</jdbc.password>-->
+
+<!--        项目的主源码目录，默认为src/main/java-->
+        <a>${pom.build.sourceDirectory}</a>
+<!--        项目的测试源码目录，默认为src/test/java-->
+        <b>${project.build.testSourceDirectory}</b>
+<!--        项目构建输出目录，默认为target-->
+        <c>${project.build.directory}</c>
+<!--        项目主代码编译输出目录，默认为target/classes-->
+        <d>${project.build.outputDirectory}</d>
+<!--        项目的测试代码编译输出目录，默认为target/test-classes-->
+        <e>${project.build.testOutputDirectory}</e>
+<!--项目的groupid-->
+        <f>${project.groupId}</f>
+<!--        项目的version,与${version}等价-->
+        <g>${project.version}</g>
+<!--        项目输出打包的文件名称，默认为${project.artifactId}-${project.version}-->
+        <h>${project.build.finalName}</h>
+
+<!--        settings属性-->
+<!--        获取本地仓库的地址-->
+        <i>${settings.localRepository}</i>
+<!--        java属性-->
+        <j>${user.home}</j>
+<!--        环境变量属性，，获取java_home的值-->
+        <k>${env.JAVA_HOME}</k>
+        <mybaits.spring.boot.starter.version>1.3.2</mybaits.spring.boot.starter.version>
+        <druid.version>1.1.14</druid.version>
+    </properties>
+
+<!--    使用profiles处理多环境构建问题（使用profiles就不用再在上边的properties里配置jdbc参数）：
+        使用场景：项目构建过程中会用到开发环境，测试环境，正式发布运行环境，使用maven可以搭建多套环境，可以在maven
+       命令中通过-P + profileid参数来指定具体使用那个环境的配置。
+               maven命令：mvn clean install -pl :b2b-account-service -Pdev
+-->
+<!--    配置多套环境-->
+<!--    <profiles>-->
+<!--&lt;!&ndash;        开发环境使用的配置&ndash;&gt;-->
+<!--        <profile>-->
+<!--            <id>dev</id>-->
+<!--&lt;!&ndash;            在不声明使用那个环境的情况下,指定默认使用的环境配置为dev&ndash;&gt;-->
+<!--            <activation>-->
+<!--                <activeByDefault>true</activeByDefault>-->
+<!--&lt;!&ndash;                上面说可以使用-P + profileid 来指定使用那个环境来运行程序，除此之外，还可以使用自定义的名字来-->
+<!--                 指定要用的参数-->
+<!--                 maven命令:mvn clean install -pl :b2b-account-service -D属性名=属性值-->
+<!--&ndash;&gt;-->
+<!--                <property>-->
+<!--                    <name>HBsound</name>-->
+<!--                    <value>HBsound_dev</value>-->
+<!--                </property>-->
+<!--            </activation>-->
+<!--&lt;!&ndash;            project标签下的properties属性时全局生效的，profile下的properties是指定环境生效的&ndash;&gt;-->
+<!--            <properties>-->
+<!--                <jdbc.url>dev jdbc url</jdbc.url>-->
+<!--                <jdbc.username>dev jdbc username</jdbc.username>-->
+<!--                <jdbc.password>dev jdbc password</jdbc.password>-->
+<!--            </properties>-->
+<!--        </profile>-->
+<!--&lt;!&ndash;        测试环境使用的配置&ndash;&gt;-->
+<!--        <profile>-->
+<!--            <id>test</id>-->
+<!--            <activation>-->
+<!--                <property>-->
+<!--                    <name>HBsound</name>-->
+<!--                    <value>HBsound_test</value>-->
+<!--                </property>-->
+<!--            </activation>-->
+<!--            <properties>-->
+<!--                <jdbc.url>test jdbc url</jdbc.url>-->
+<!--                <jdbc.username>test jdbc username</jdbc.username>-->
+<!--                <jdbc.password>test jdbc password</jdbc.password>-->
+<!--            </properties>-->
+<!--        </profile>-->
+<!--&lt;!&ndash;        线上环境使用的配置 &ndash;&gt;-->
+<!--        <profile>-->
+<!--            <id>prod</id>-->
+<!--            <properties>-->
+<!--                <jdbc.url>prod jdbc url</jdbc.url>-->
+<!--                <jdbc.username>prod jdbc username</jdbc.username>-->
+<!--                <jdbc.password>prod jdbc password</jdbc.password>-->
+<!--            </properties>-->
+<!--        </profile>-->
+<!--    </profiles>-->
+<!--    启动程序时指定多个环境配置，此举例放在本文件最下边-->
+
+
+
+
+
+
+
+
+
+
+<!--依赖于b2b-account-api，引入进来-->
+    <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>${project.groupId}</groupId>-->
+<!--            <artifactId>b2b-account-api</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>2.0.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+       <!--mybatis驱动包-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybaits.spring.boot.starter.version}</version>
+        </dependency>
+
+        <!-- Mysql驱动包 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--sqlserver驱动 -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>4.0</version>
+        </dependency>
+
+        <!--阿里数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.13</version>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        
+
+        <!--测试的起步依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- shiro spring. -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+    </dependencies>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--    build标签：主要用于编译设置-->
+<!--    开启资源文件的动态替换配置-->
+    <build>
+<!--        <resources>-->
+<!--            <resource>-->
+<!--&lt;!&ndash;            指定资源文件的目录&ndash;&gt;-->
+<!--                <directory>${project.basedir}/src/main/resources</directory>-->
+<!--&lt;!&ndash;            开启过滤替换配置，默认不开启    &ndash;&gt;-->
+<!--                <filtering>true</filtering>-->
+<!--&lt;!&ndash;                当有几个properties文件时，如果不做限定，就会默认全部都进行处理，可以通过include和exclude来区分&ndash;&gt;-->
+<!--                <includes>-->
+<!--                    <include>**/jdbc.properties</include>-->
+<!--                </includes>-->
+
+<!--&lt;!&ndash;    在main资源文件中有两个资源文件，只想让jdbc能复制到target/classes,不让const复制进去，可以使用exclude排除&ndash;&gt;-->
+<!--&lt;!&ndash;                <excludes>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <exclude>**/const.properties</exclude>&ndash;&gt;-->
+<!--&lt;!&ndash;                </excludes>&ndash;&gt;-->
+<!--            </resource>-->
+
+<!--&lt;!&ndash;        多个resouce:使用场景：两个资源文件，jdbc和const，让jdbc里的内容即得到替换，也复制到到target/classes,-->
+<!--          而const仅仅只让复制到target/classes,内容不进行替换-->
+<!--&ndash;&gt;-->
+<!--            <resource>-->
+<!--                <directory>${project.basedir}/src/main/resources</directory>-->
+<!--                <includes>-->
+<!--                    <include>**/const.properties</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--        </resources>-->
+<!--        <testResources>-->
+<!--            <testResource>-->
+<!--                <directory>${project.basedir}/src/test/resources</directory>-->
+<!--                <filtering>true</filtering>-->
+<!--            </testResource>-->
+<!--        </testResources>-->
+<!--        这里主要验证自定义替换的分隔符（默认分隔符就是${}）-->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+<!--                    是否使用默认的分隔符，默认分隔符是${*}和@，这个地方设置为false-->
+                    <useDefaultDelimiters>true</useDefaultDelimiters>
+<!--               自定义分隔符-->
+                    <delimiters>
+                        <delimiter>$*$</delimiter>
+                        <delimiter>##</delimiter>
+                    </delimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+<!--启动程序时指定多个环境的配置-->
+        <!--每个环境中只配置了一个属性，当同时指定多个配置时，不同的环境配置就会进行合并去重-->
+        <!--maven命令： mvn clean package -pl :b2b-account-service -Pdev,test,prod -->
+<!--
+<profiles>
+          &lt;!&ndash;        开发环境使用的配置&ndash;&gt;
+<profile>
+    <id>dev</id>
+
+    <activation>
+        <activeByDefault>true</activeByDefault>
+
+        <property>
+            <name>HBsound</name>
+            <value>HBsound_dev</value>
+        </property>
+    </activation>
+    <properties>
+        <jdbc.url>dev jdbc url</jdbc.url>
+    </properties>
+</profile>
+           &lt;!&ndash;        测试环境使用的配置&ndash;&gt;
+<profile>
+    <id>test</id>
+    <activation>
+        <property>
+            <name>HBsound</name>
+            <value>HBsound_test</value>
+        </property>
+    </activation>
+    <properties>
+        <jdbc.username>test jdbc username</jdbc.username>
+    </properties>
+</profile>
+         &lt;!&ndash;        线上环境使用的配置 &ndash;&gt;
+<profile>
+    <id>prod</id>
+    <properties>
+        <jdbc.password>prod jdbc password</jdbc.password>
+    </properties>
+</profile>
+</profiles>-->

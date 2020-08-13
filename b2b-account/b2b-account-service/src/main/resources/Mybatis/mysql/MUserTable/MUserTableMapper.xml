@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shiro.mapper.mysql.MUserTableMapper">
+
+    <resultMap id="MUsertable1" type="MUserTable">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="role_id" property="role_id"></result>
+    </resultMap>
+
+    <resultMap id="MUsertable2" type="MUserTable">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="role_id" property="role_id"></result>
+        <collection property="role" column="roleid" javaType="Role" autoMapping="true">
+            <id column="id" property="id"></id>
+            <result column="rolename" property="rolename"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="MUsertable3" type="MUserTable">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="role_id" property="role_id"></result>
+        <collection property="role" column="roleid" javaType="Permission" autoMapping="true">
+            <id column="id" property="id"></id>
+            <result column="rolename" property="rolename"></result>
+        </collection>
+    </resultMap>
+
+    <select id="selectAll" resultMap="MUsertable1">
+        select * from usertable
+    </select>
+
+    <select id="selectAllByUsername" parameterType="String" resultMap="MUsertable1">
+        select * from usertable where username=#{username}
+    </select>
+
+    <select id="selectRoleByName" resultType="String">
+        select r.rolename from role r where r.id in (SELECT role_id from usertable WHERE username=#{username})
+    </select>
+<!--如果方法的返回值是List<String>集合之类的，我们的数据库语句返回的就是String,然后到外边会用list来存放-->
+    <select id="selectPermissionByName" resultType="String">
+        select p.permissionname from permission p where p.role_id in (SELECT role_id from usertable WHERE username=#{username})
+    </select>
+
+<!--   用户注册-->
+    <insert id="insertNewAuth" parameterType="MUserTable">
+        insert into usertable(username,password,role_id) value (#{username},#{password},#{role_id})
+    </insert>
+</mapper>

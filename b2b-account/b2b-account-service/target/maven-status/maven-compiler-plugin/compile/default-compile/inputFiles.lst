@@ -1,0 +1,15 @@
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\entity\mysql\Permission.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\realms\MyRealms.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\exception\AllException.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\controller\LoginHandler.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\entity\mysql\Role.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\service\mysql\IMUserTableMapper.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\entity\mysql\MUserTable.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\configBean\passwordHelper.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\mapper\mysql\RoleMapper.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\mapper\mysql\MUserTableMapper.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\service\mysql\impl\MUserTableMapperImpl.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\controller\UserTableController.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\controller\Ahandler.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\DemoApplication.java
+F:\mavendemob2b (3)\b2b-account\b2b-account-service\src\main\java\com\shiro\configBean\ShiroConfigBean.java
